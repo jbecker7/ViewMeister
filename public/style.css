@@ -1,0 +1,115 @@
+body {
+  background: #bbb;
+  position: relative;
+}
+
+.wrapper {
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.outer {
+  position: relative;
+  width: 470px;
+  height: 470px;
+  background: white;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border-radius: 100%;
+}
+
+.container {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 398px;
+  height: 398px;
+  margin: 50px auto;
+  overflow: hidden;
+  padding: 17px;
+  border-radius: 100%;
+}
+
+.pointer {
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-right: 30px solid black;
+}
+
+.btn-container {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+}
+
+button {
+  width: 50px;
+  height: 50px;
+}
+
+.views {
+  color: #fff;
+  background-color: red;
+  background-image: url(https://images.unsplash.com/photo-1542850566-4f5fffff6093?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ);
+  background-size: cover;
+  background-position: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+}
+.views:nth-child(2) {
+  background-image: url(https://images.unsplash.com/photo-1581723397759-70e56b62384c?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ);
+}
+.views:nth-child(3) {
+  background-image: url(https://images.unsplash.com/photo-1508181955574-626890f327f2?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ);
+}
+.views:nth-child(4) {
+  background-image: url(https://images.unsplash.com/photo-1460495210771-331d575aac24?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ);
+}
+.views:nth-child(5) {
+  background-image: url(https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ);
+}
+.views:nth-child(6) {
+  background-image: url(https://images.unsplash.com/photo-1477948879622-5f16e220fa42?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ);
+}
+.views:nth-child(7) {
+  background-image: url(https://images.unsplash.com/photo-1531750479531-e8caa57a0cea?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ);
+}
+.views:nth-child(8) {
+  background-image: url(https://images.unsplash.com/photo-1459236914855-982c6a11b8ee?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ);
+}
+.views:nth-child(9) {
+  background-image: url(https://images.unsplash.com/photo-1464983953574-0892a716854b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ);
+}
+.views:nth-child(10) {
+  background-image: url(https://images.unsplash.com/photo-1531987466542-9608af79a74f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ);
+}
+.views:nth-child(11) {
+  background-image: url(https://images.unsplash.com/photo-1446037909474-e2bff6697533?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ);
+}
+.views:nth-child(12) {
+  background-image: url(https://images.unsplash.com/photo-1445820046733-e58f1facc9ef?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ);
+}
+.views:nth-child(13) {
+  background-image: url(https://images.unsplash.com/photo-1465451295220-eebae3bbe84c?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ);
+}
+.views:nth-child(14) {
+  background-image: url(https://images.unsplash.com/photo-1461712132323-d60b5db21dba?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ);
+}
+
+.center {
+  background: #bbb;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+}
