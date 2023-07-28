@@ -65,11 +65,11 @@ app.post('/save-reel', async (req, res) => {
   const cssContent = fs.readFileSync(cssFilePath, 'utf-8');
 
   // Parse the CSS and extract the background image URLs
-  const imageUrls = [];
-  postcss.parse(cssContent).walkDecls('background-image', (decl) => {
-    const url = decl.value.match(/url\(["']?([^"']+)["']?\)/)[1];
-    imageUrls.push(url);
-  });
+  const imageUrls = ['1','2','3','4','5','6','7','8','9','10','11','12','13'];
+  // postcss.parse(cssContent).walkDecls('background-image', (decl) => {
+  //   const url = decl.value.match(/url\(["']?([^"']+)["']?\)/)[1];
+  //   imageUrls.push(url);
+  // });
 
   const uuid = uuidv4();
 

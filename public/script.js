@@ -1,5 +1,13 @@
 for (let i = 0; i < 13; i++) {
   const dupThing = document.querySelector(".views").cloneNode(true);
+  const imgElement = document.createElement('img');
+  imgElement.src = "";
+  imgElement.style.position = 'absolute';
+  imgElement.style.width = '100%';
+  imgElement.style.height = '100%';
+  imgElement.style.objectFit = 'cover';
+  imgElement.style.borderRadius = '8px';
+  dupThing.appendChild(imgElement);
   document.querySelector(".container").appendChild(dupThing);
 }
 
@@ -15,6 +23,14 @@ for (let i = 0; i < elems2.length; i++) {
   const rot = 0 + (i * (360 / elems2.length));
   elem.style.transform = "rotate(" + rot + "deg)";
   angle += Math.PI * 2 / elems2.length;
+
+  elem.addEventListener('click', function() {
+    const url = prompt('Enter the URL of the image');
+    if(url) {
+      const img = elem.querySelector('img');
+      if (img) img.src = url;
+    }
+  });
 }
 
 const nextClick = document.querySelector('#nextClick');
@@ -27,24 +43,69 @@ nextClick.addEventListener('click', function () {
   container.style.transform = "rotate(" + deg + "deg)";
 });
 
-const saveReelBtn = document.querySelector('#saveReel');
-saveReelBtn.addEventListener('click', function () {
-  fetch('localhost:8080/save-reel', {
-    method: 'POST'
-  })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Failed to save reel: ' + response.status);
+const exportReelBtn = document.getElementById('exportReel');
+
+exportReelBtn.addEventListener('click', function() {
+  const imageElems = document.querySelectorAll('.views'); 
+
+  const imageURLs = Array.from(imageElems).map(elem => {
+      const img = elem.querySelector('img');
+      let imgSrc = img ? img.getAttribute('src') : "";
+      
+      if(imgSrc !== "") {
+          return imgSrc;
       }
-      return response.json();
-    })
-    .then(data => {
-      console.log('Reel saved:', data);
-      alert('Reel saved! UUID: ' + data.uuid);
-    })
-    .catch(error => {
-      console.error('Failed to save reel:', error);
-      alert('Failed to save reel. Please try again.');
-    });
+
+      const style = window.getComputedStyle(elem);
+      
+      let backgroundImage = style.getPropertyValue('background-image');
+      backgroundImage = backgroundImage.replace('url(', '').replace(')', '').replace(/"/g, '');
+      
+      return backgroundImage;
+  });
+
+  const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(imageURLs));
+
+  const downloadAnchorNode = document.createElement('a');
+  downloadAnchorNode.setAttribute('href', dataStr);
+  downloadAnchorNode.setAttribute('download', 'imageURLs.json');
+  document.body.appendChild(downloadAnchorNode); // Required for Firefox I guess lol
+  downloadAnchorNode.click();
+  downloadAnchorNode.remove();
+});
+const loadReelBtn = document.getElementById('loadReel');
+const loadReelInput = document.getElementById('loadReelInput');
+
+loadReelBtn.addEventListener('click', function() {
+    loadReelInput.click();
 });
 
+loadReelInput.addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const contents = e.target.result;
+        const imageURLs = JSON.parse(contents);
+        
+        const imageElems = document.querySelectorAll('.views');
+        for(let i = 0; i < imageURLs.length; i++) {
+            const imgElem = imageElems[i];
+            const img = imgElem.querySelector('img');
+            if(img) {
+                img.src = imageURLs[i];
+            } else {
+                const imgElement = document.createElement('img');
+                imgElement.src = imageURLs[i];
+                imgElement.style.position = 'absolute';
+                imgElement.style.width = '100%';
+                imgElement.style.height = '100%';
+                imgElement.style.objectFit = 'cover';
+                imgElement.style.borderRadius = '8px';
+                imgElem.appendChild(imgElement);
+            }
+        }
+    };
+    reader.readAsText(file);
+});
