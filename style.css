@@ -69,6 +69,14 @@ button {
   width: 70px;
 }
 
+#colorpicker {
+  position: absolute;
+  left: 1250px;
+  top: -20px;
+  width:100px;
+  height:100px;
+}
+
 .views {
   color: #fff;
   background-color: red;

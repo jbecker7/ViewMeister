@@ -44,6 +44,7 @@ nextClick.addEventListener('click', function () {
 });
 
 const exportReelBtn = document.getElementById('exportReel');
+const outerElement = document.querySelector('.outer');
 
 exportReelBtn.addEventListener('click', function() {
   const imageElems = document.querySelectorAll('.views'); 
@@ -64,15 +65,23 @@ exportReelBtn.addEventListener('click', function() {
       return backgroundImage;
   });
 
-  const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(imageURLs));
+  const outerColor = window.getComputedStyle(outerElement).backgroundColor;
+
+  const data = {
+      color: outerColor,
+      images: imageURLs,
+  };
+
+  const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
 
   const downloadAnchorNode = document.createElement('a');
   downloadAnchorNode.setAttribute('href', dataStr);
-  downloadAnchorNode.setAttribute('download', 'imageURLs.json');
+  downloadAnchorNode.setAttribute('download', 'imageData.json');
   document.body.appendChild(downloadAnchorNode); // Required for Firefox I guess lol
   downloadAnchorNode.click();
   downloadAnchorNode.remove();
 });
+
 const loadReelBtn = document.getElementById('loadReel');
 const loadReelInput = document.getElementById('loadReelInput');
 
@@ -87,17 +96,19 @@ loadReelInput.addEventListener('change', function(e) {
     const reader = new FileReader();
     reader.onload = function(e) {
         const contents = e.target.result;
-        const imageURLs = JSON.parse(contents);
+        const data = JSON.parse(contents);
         
+        outerElement.style.background = data.color;
+
         const imageElems = document.querySelectorAll('.views');
-        for(let i = 0; i < imageURLs.length; i++) {
+        for(let i = 0; i < data.images.length; i++) {
             const imgElem = imageElems[i];
             const img = imgElem.querySelector('img');
             if(img) {
-                img.src = imageURLs[i];
+                img.src = data.images[i];
             } else {
                 const imgElement = document.createElement('img');
-                imgElement.src = imageURLs[i];
+                imgElement.src = data.images[i];
                 imgElement.style.position = 'absolute';
                 imgElement.style.width = '100%';
                 imgElement.style.height = '100%';
@@ -108,4 +119,10 @@ loadReelInput.addEventListener('change', function(e) {
         }
     };
     reader.readAsText(file);
+});
+
+const colorPicker = document.getElementById('colorPicker');
+
+colorPicker.addEventListener('input', function() {
+  outerElement.style.background = colorPicker.value;
 });

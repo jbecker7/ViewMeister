@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>ViewMeister/title>
+  <title>ViewMeister</title>
+  <h1>What</h1>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel="stylesheet" href="./style.css">
 </head>
@@ -12,6 +13,12 @@
   <button id="exportReel">Export Reel</button>
   <input type="file" id="loadReelInput" style="display: none;" accept=".json"/>
 <button id="loadReel">Load Reel</button>
+
+<button id="colorpicker">
+  <label for="colorPicker">Change wheel color: </label>
+  <input type="color" id="colorPicker" name="colorPicker" value="#ffffff">
+  </button>
+
 
 
 </div>
@@ -28,10 +35,6 @@
   </div>
 </div>
 
-<div class="viewmaster">
-  <div class="eyepiece"></div>
-  <div class="eyepiece"></div>
-</div>
 
 <script src="./script.js"></script>
 </body>
