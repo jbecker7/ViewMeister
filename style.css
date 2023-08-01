@@ -127,11 +127,31 @@ button {
   background-image: url(https://images.unsplash.com/photo-1461712132323-d60b5db21dba?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ);
 }
 
+
+#label {
+  position: absolute;
+  top: 30%; /* Place the top of the label at the vertical center of the .outer container */
+  left: 50%; /* Place the left edge of the label at the horizontal center of the .outer container */
+  transform: translate(-50%, -50%); /* Center the label perfectly in the middle */
+  background: black;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-decoration: underline;
+  font-family: cursive, 'Courier New', sans-serif;
+  cursor: text; /* Change the cursor to text when hovering over the #label */
+  max-width: 125px;
+  max-height: 75;
+  overflow: hidden;
+}
+
 .center {
   background: #bbb;
   width: 20px;
   height: 20px;
   border-radius: 100%;
+  position: relative;
 }
+
 
 

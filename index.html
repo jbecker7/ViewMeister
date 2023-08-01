@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>ViewMeister</title>
-  <h1>What</h1>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 <div class="btn-container">
-  <button id="nextClick"><svg width="24" height="24" viewBox="0 0 24 24"> <path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" /> </svg></button>
+  <button id="prevClick"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/> <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/> </svg></button>
+  <button id="nextClick"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/> <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/> </svg> </button>
   <button id="exportReel">Export Reel</button>
   <input type="file" id="loadReelInput" style="display: none;" accept=".json"/>
 <button id="loadReel">Load Reel</button>
@@ -26,9 +26,10 @@
 
 <div class="wrapper">
   <div class="outer">
+    
     <div class="pointer"></div>
     <div class="container">
-      <div class="center"></div>
+      <div id="label" contenteditable>Click to edit this text</div>      <div class="center"></div>
       <div class="views">
       </div>
     </div>

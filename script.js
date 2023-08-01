@@ -33,15 +33,75 @@ for (let i = 0; i < elems2.length; i++) {
   });
 }
 
+
+const prevClick = document.querySelector('#prevClick');
 const nextClick = document.querySelector('#nextClick');
 const container = document.querySelector('.container');
 let count = 0;
 const degCalc = 360 / elems2.length;
-nextClick.addEventListener('click', function () {
-  count++;
+
+prevClick.addEventListener('click', function () {
+  count--;
+  if (count < 0) {
+    count = elems2.length - 1;
+  }
   let deg = count * degCalc;
   container.style.transform = "rotate(" + deg + "deg)";
 });
+
+nextClick.addEventListener('click', function () {
+  count++;
+  if (count >= elems2.length) {
+    count = 0;
+  }
+  let deg = count * degCalc;
+  container.style.transform = "rotate(" + deg + "deg)";
+});
+
+const labelElement = document.getElementById('label');
+
+labelElement.addEventListener('click', () => {
+  labelElement.contentEditable = true;
+  labelElement.focus();
+});
+
+function adjustFontSize() {
+  const maxSize = 20; 
+  const containerWidth = labelElement.parentElement.clientWidth;
+  const containerHeight = labelElement.parentElement.clientHeight; // Get the container height
+  const maxTextWidth = 100 - 20; // Maximum width minus padding (left and right)
+  const maxTextHeight = 75 - 10; // Maximum height minus padding (top and bottom)
+
+  const cloneElement = labelElement.cloneNode(true);
+  cloneElement.style.visibility = 'hidden';
+  cloneElement.style.position = 'absolute';
+  cloneElement.style.width = 'auto';
+  cloneElement.style.maxWidth = maxTextWidth + 'px'; 
+  cloneElement.style.whiteSpace = 'normal'; 
+  cloneElement.style.overflow = 'hidden'; 
+  cloneElement.textContent = labelElement.textContent;
+  document.body.appendChild(cloneElement);
+
+  const textWidth = cloneElement.clientWidth;
+  const textHeight = cloneElement.clientHeight;
+  document.body.removeChild(cloneElement);
+
+  let newFontSize = maxSize;
+  if (textWidth > maxTextWidth || textHeight > maxTextHeight) {
+    const widthRatio = maxTextWidth / textWidth;
+    const heightRatio = maxTextHeight / textHeight;
+    const minRatio = Math.min(widthRatio, heightRatio);
+    newFontSize = Math.floor(maxSize * minRatio);
+  }
+  labelElement.style.fontSize = newFontSize + 'px';
+}
+
+
+
+labelElement.addEventListener('input', adjustFontSize);
+
+
+
 
 const exportReelBtn = document.getElementById('exportReel');
 const outerElement = document.querySelector('.outer');
